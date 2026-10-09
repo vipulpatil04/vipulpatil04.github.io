@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vipul Patil | AI Infrastructure</title>
+<meta name="description" content="Vipul Patil: SRE turned AI infrastructure engineer. M.S. CS at UIC, Argonne National Laboratory intern. Distributed RAG, vector databases, MLOps, edge AI.">
+<style>
+  :root {
+    --bg: #fbfbf9; --surface: #ffffff; --text: #1a1d21; --muted: #5b636e;
+    --border: #e4e6e9; --accent: #2457d6; --accent-soft: #e8eefc; --chip: #f1f3f5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1216; --surface: #171b21; --text: #e8eaed; --muted: #9aa3ae;
+      --border: #272d35; --accent: #7aa2ff; --accent-soft: #1b2540; --chip: #20262e;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 16px; }
+
+  nav { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 88%, transparent);
+        backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+  nav .wrap { display: flex; justify-content: space-between; align-items: center; height: 56px; gap: 12px; }
+  nav .brand { font-weight: 700; color: var(--text); }
+  nav ul { display: flex; gap: 18px; list-style: none; margin: 0; padding: 0; font-size: 14px; }
+  nav ul a { color: var(--muted); }
+  @media (max-width: 640px) { nav ul { display: none; } }
+
+  header { padding: 72px 0 48px; }
+  .eyebrow { color: var(--accent); font-weight: 600; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; }
+  h1 { font-size: clamp(32px, 6vw, 48px); line-height: 1.15; margin: 8px 0 16px; letter-spacing: -.02em; }
+  .lede { font-size: 18px; color: var(--muted); max-width: 640px; margin: 0 0 24px; }
+  .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+  .badge { background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 6px 14px; font-size: 14px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn { display: inline-block; padding: 10px 18px; border-radius: 8px; font-weight: 600; font-size: 15px; border: 1px solid var(--border); color: var(--text); background: var(--surface); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn:hover { text-decoration: none; filter: brightness(1.05); }
+
+  section { padding: 48px 0; border-top: 1px solid var(--border); }
+  h2 { font-size: 26px; margin: 0 0 24px; letter-spacing: -.01em; }
+  h3 { font-size: 18px; margin: 0 0 6px; }
+
+  .timeline { list-style: none; margin: 0; padding: 0; position: relative; }
+  .timeline::before { content: ""; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: var(--border); }
+  .timeline > li { position: relative; padding: 0 0 28px 36px; }
+  .timeline > li::before { content: ""; position: absolute; left: 0; top: 6px; width: 16px; height: 16px; border-radius: 50%;
+                         background: var(--surface); border: 3px solid var(--accent); }
+  .timeline > li.now::before { background: var(--accent); }
+  .when { font-size: 13px; color: var(--muted); font-weight: 600; }
+  .timeline p, .card p { margin: 4px 0 0; color: var(--muted); }
+  .timeline ul { margin: 8px 0 0; padding-left: 18px; color: var(--muted); }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 16px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; }
+  .card .tag { font-size: 12px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 6px; }
+  .card .chips { margin-top: auto; padding-top: 14px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { background: var(--chip); border-radius: 6px; padding: 2px 8px; font-size: 12.5px; }
+  .card .link { margin-top: 12px; font-size: 14px; font-weight: 600; }
+  .card .soon { margin-top: 12px; font-size: 14px; color: var(--muted); }
+
+  .courses { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+  .course { border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; background: var(--surface); }
+  .course b { display: block; font-size: 13px; color: var(--accent); }
+
+  .skills { display: grid; gap: 14px; }
+  .skills > div { display: grid; grid-template-columns: 140px 1fr; gap: 12px; align-items: start; }
+  .skills .k { font-weight: 600; font-size: 14px; padding-top: 2px; }
+  @media (max-width: 560px) { .skills > div { grid-template-columns: 1fr; gap: 6px; } }
+
+  footer { padding: 48px 0 64px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; }
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a class="brand" href="#">Vipul Patil</a>
+  <ul>
+    <li><a href="#journey">Journey</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#coursework">Coursework</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</div></nav>
+
+<header><div class="wrap">
+  <div class="eyebrow">AI Infrastructure · SRE · Distributed Systems</div>
+  <h1>I keep systems reliable,<br>now for AI at scale.</h1>
+  <p class="lede">Site Reliability Engineer turned AI infrastructure engineer. After nearly three years debugging enterprise backup clusters at Veritas, I now build distributed RAG pipelines, benchmark vector databases on supercomputers and run GPU inference at the edge.</p>
+  <div class="badges">
+    <span class="badge">🎓 M.S. CS, University of Illinois Chicago (May 2027)</span>
+    <span class="badge">🔬 Argonne National Laboratory, ALCF</span>
+    <span class="badge">🛠️ ex-SRE, Veritas Technologies</span>
+  </div>
+  <div class="cta">
+    <a class="btn primary" href="#projects">View projects</a>
+    <a class="btn" href="https://github.com/vipulpatil04">GitHub</a>
+    <a class="btn" href="https://linkedin.com/in/vipulpatil04">LinkedIn</a>
+  </div>
+</div></header>
+
+<section id="journey"><div class="wrap">
+  <h2>Journey</h2>
+  <ol class="timeline">
+    <li class="now">
+      <div class="when">Summer 2026</div>
+      <h3>Graduate Student Intern · Argonne National Laboratory (ALCF)</h3>
+      <ul>
+        <li>Benchmarked vector databases (LanceDB, Milvus, Qdrant) for multimodal approximate nearest-neighbor search on the Polaris supercomputer.</li>
+        <li>Designed large-scale experiments with LanceDB, PyTorch and multimodal embeddings to analyze HNSW and IVF indexing performance for AI/HPC workloads.</li>
+      </ul>
+    </li>
+    <li>
+      <div class="when">Aug 2025 – May 2027</div>
+      <h3>M.S. Computer Science · University of Illinois Chicago</h3>
+      <p>Focus on AI infrastructure: distributed cloud systems, vector databases, ML in production, edge computing and security.</p>
+    </li>
+    <li>
+      <div class="when">2022 – Dec 2024</div>
+      <h3>Site Reliability Engineer · Veritas Technologies (now Cohesity)</h3>
+      <ul>
+        <li>Led root-cause analysis of critical backup and cluster failures for 100+ enterprise clients using failover-cluster logs, tcpdump traces and system metrics.</li>
+        <li>Found storage, network and compute bottlenecks, delivering 20–25% throughput improvements.</li>
+        <li>Automated diagnostics and log aggregation in Bash, Python and PowerShell, cutting manual work by 40% and incident resolution time by 30%.</li>
+        <li>Delivered 10+ technical sessions on Veritas NetBackup.</li>
+      </ul>
+    </li>
+    <li>
+      <div class="when">2018 – 2022</div>
+      <h3>B.Tech Computer Engineering (Honors: Data Science) · Savitribai Phule Pune University</h3>
+      <p>Technical Head, INNOVISION 2021 at RSCOE.</p>
+    </li>
+  </ol>
+</div></section>
+
+<section id="projects"><div class="wrap">
+  <h2>Projects</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="tag">Distributed Systems · RAG</div>
+      <h3>RAG Index Builder</h3>
+      <p>Hadoop MapReduce pipeline that turns research-paper PDFs into sharded Lucene HNSW vector indexes, using sentence-aware sliding-window chunking and 1024-d Ollama embeddings.</p>
+      <div class="chips"><span class="chip">Scala 3</span><span class="chip">Hadoop</span><span class="chip">Lucene</span><span class="chip">Ollama</span></div>
+    </div>
+    <div class="card">
+      <div class="tag">Distributed Systems · RAG</div>
+      <h3>Incremental RAG</h3>
+      <p>Follow-up to the RAG Index Builder: updates the index incrementally instead of rebuilding from scratch.</p>
+      <div class="chips"><span class="chip">Scala</span></div>
+      <a class="link" href="https://github.com/vipulpatil04/CS441-HW2-Incremental-RAG">View on GitHub →</a>
+    </div>
+    <div class="card">
+      <div class="tag">Edge AI</div>
+      <h3>Edge Vehicle Counting</h3>
+      <p>GPU-accelerated YOLOv8 vehicle counting, containerized with Docker and the NVIDIA Container Runtime on Jetson Thor. One command deploys it with Docker Compose.</p>
+      <div class="chips"><span class="chip">Docker</span><span class="chip">YOLOv8</span><span class="chip">CUDA 13</span><span class="chip">Jetson Thor</span></div>
+      <span class="soon">Repo coming soon</span>
+    </div>
+    <div class="card">
+      <div class="tag">Edge AI · Performance</div>
+      <h3>Edge AI Profiling</h3>
+      <p>Per-phase inference timing (preprocessing, GPU inference, postprocessing) correlated with CPU, memory and GPU frequency on an ARM64 + CUDA edge device.</p>
+      <div class="chips"><span class="chip">Python</span><span class="chip">jtop</span><span class="chip">nvidia-smi</span></div>
+      <span class="soon">Repo coming soon</span>
+    </div>
+    <div class="card">
+      <div class="tag">Vector Databases</div>
+      <h3>BigVectorBench</h3>
+      <p>Benchmarking vector databases on large-scale embedding workloads.</p>
+      <div class="chips"><span class="chip">Python</span><span class="chip">Vector DBs</span></div>
+      <a class="link" href="https://github.com/vipulpatil04/BigVectorBench">View on GitHub →</a>
+    </div>
+    <div class="card">
+      <div class="tag">MLOps</div>
+      <h3>ML in Production: Kafka Lab</h3>
+      <p>Streaming data pipelines for production ML systems.</p>
+      <div class="chips"><span class="chip">Kafka</span><span class="chip">Python</span></div>
+      <a class="link" href="https://github.com/vipulpatil04/mlip-kafka-lab">View on GitHub →</a>
+    </div>
+  </div>
+</div></section>
+
+<section id="coursework"><div class="wrap">
+  <h2>Graduate Coursework</h2>
+  <div class="courses">
+    <div class="course"><b>CS 441</b>Engineering Distributed Objects for Cloud Computing</div>
+    <div class="course"><b>CS 594</b>Vector Databases</div>
+    <div class="course"><b>CS 544</b>Machine Learning in Production</div>
+    <div class="course"><b>CS 494</b>Edge Computing</div>
+    <div class="course"><b>CS 484</b>Secure Web Application Development</div>
+    <div class="course"><b>CS 587</b>Computer Systems Security</div>
+    <div class="course"><b>CS 401</b>Computer Algorithms</div>
+  </div>
+</div></section>
+
+<section id="skills"><div class="wrap">
+  <h2>Skills</h2>
+  <div class="skills">
+    <div><span class="k">Languages</span><div class="chips"><span class="chip">Scala</span><span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">Bash</span><span class="chip">Rust</span></div></div>
+    <div><span class="k">AI / Data</span><div class="chips"><span class="chip">RAG</span><span class="chip">PyTorch</span><span class="chip">LanceDB</span><span class="chip">Milvus</span><span class="chip">Qdrant</span><span class="chip">Lucene HNSW</span><span class="chip">YOLOv8</span><span class="chip">OpenCV</span><span class="chip">Kafka</span><span class="chip">RabbitMQ</span></div></div>
+    <div><span class="k">Cloud &amp; Infra</span><div class="chips"><span class="chip">AWS</span><span class="chip">Docker</span><span class="chip">Kubernetes</span><span class="chip">Helm</span><span class="chip">CI/CD</span><span class="chip">Linux</span></div></div>
+    <div><span class="k">Edge / HPC</span><div class="chips"><span class="chip">NVIDIA Jetson Thor</span><span class="chip">CUDA</span><span class="chip">ALCF Polaris</span></div></div>
+    <div><span class="k">Web</span><div class="chips"><span class="chip">React</span><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">gRPC</span><span class="chip">PostgreSQL</span></div></div>
+  </div>
+</div></section>
+
+<footer id="contact"><div class="wrap">
+  <h2 style="color:var(--text)">Let's talk</h2>
+  <p>Open to AI Infrastructure, SRE and Platform Engineering roles starting 2027.</p>
+  <div class="cta" style="margin:16px 0 32px">
+    <a class="btn primary" href="mailto:vpati@uic.edu">vpati@uic.edu</a>
+    <a class="btn" href="https://linkedin.com/in/vipulpatil04">LinkedIn</a>
+    <a class="btn" href="https://github.com/vipulpatil04">GitHub</a>
+  </div>
+  <p>© 2026 Vipul Patil</p>
+</div></footer>
+
+</body>
+</html>
