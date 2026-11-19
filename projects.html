@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects — Vipul Patil</title>
+<meta name="description" content="Vector database benchmarking on supercomputers, incremental RAG pipelines, edge inference on Jetson Thor, and an explainable fraud classifier.">
+<link rel="stylesheet" href="style.css">
+</head><body id="top">
+<header class="nav"><div class="nav-inner">
+<a class="nav-name" href="index.html">Vipul Patil</a>
+<nav class="nav-links">
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="projects.html" class=on>Projects</a>
+<a href="experience.html">Experience</a>
+<a href="coursework.html">Courses</a>
+</nav>
+</div></header>
+<main><div class="wrap">
+<p class="eyebrow">Projects</p>
+<h1>Projects</h1>
+<p class="lead">Mostly storage and retrieval systems, with the measurements that went with them. Where a repo isn't linked yet, it's still being cleaned up for publishing.</p>
+
+<h2 class="plain">Vector Database Benchmarking for HPC</h2>
+<div class="entry">
+<div class="entry-top"><h3>Argonne National Laboratory &middot; Aurora &amp; Polaris</h3><span class="entry-meta">Summer 2026</span></div>
+<p class="entry-sub">Research internship, Mathematics &amp; Computer Science Division</p>
+<p><strong>The problem.</strong> Scientific teams wanted multimodal similarity search at HPC scale, and nobody knew which vector database or index type would hold up &mdash; or what each one costs in recall and latency.</p>
+<p><strong>What I built.</strong> The full evaluation pipeline in Python on Linux: batch job submission on Polaris, dynamic data inserts to test how indexes behave as data grows, and repeatable experiment runs so every before/after comparison was fair. I benchmarked LanceDB, Milvus, and Qdrant across HNSW and IVF indexing, scoring approximate results against brute-force ground truth. Embedding datasets lived on the Eagle and Grand Lustre parallel file systems.</p>
+<p><strong>What I learned.</strong> IVF recall degraded badly on our fused multimodal embeddings, and my first explanation was wrong. The actual cause was norm asymmetry &mdash; embeddings from different modalities had very different magnitudes, which skewed cluster assignment. I corrected the claim in the final report. A benchmark number you can't explain isn't a result yet.</p>
+<div class="tags"><span class="tag">Python</span><span class="tag">Milvus</span><span class="tag">Qdrant</span><span class="tag">LanceDB</span><span class="tag">HNSW / IVF</span><span class="tag">Lustre</span><span class="tag">HPC</span></div>
+<div class="repos"><a href="https://github.com/vipulpatil04/Summer-Internship-Report-Vipul-Patil">Full internship report &rarr;</a></div>
+</div>
+
+<h2>Incremental RAG Pipeline</h2>
+<div class="entry">
+<div class="entry-top"><h3>Distributed &amp; Cloud Computing</h3><span class="entry-meta">CS 441 &middot; UIC</span></div>
+<p class="entry-sub">Built across three stages: index, incremental reprocessing, streaming</p>
+<p><strong>The problem.</strong> Re-embedding an entire corpus every time a few documents change is the default behaviour of most RAG pipelines, and it's wasteful in both compute and storage.</p>
+<p><strong>What I built.</strong> A distributed ingestion pipeline with content-hash deduplication, so only genuinely changed data gets re-chunked and re-embedded. Incremental, fault-tolerant reprocessing on Spark and Delta Lake, then Flink streaming on AWS EKS for near-real-time index refresh.</p>
+<p><strong>What I learned.</strong> Deduplication is a correctness problem before it's an efficiency one &mdash; getting the hash boundary wrong silently serves stale context to the model, and nothing crashes to tell you.</p>
+<div class="tags"><span class="tag">Spark</span><span class="tag">Delta Lake</span><span class="tag">Flink</span><span class="tag">AWS EKS</span><span class="tag">Kubernetes</span><span class="tag">Python</span></div>
+<div class="repos">
+<a href="https://github.com/vipulpatil04/CS441-HW2-Incremental-RAG">Incremental reprocessing stage &rarr;</a>
+</div>
+</div>
+
+<h2>Vector Database Research &mdash; BatANN &amp; RAG Pipeline Pathology</h2>
+<div class="entry">
+<div class="entry-top"><h3>Vector Databases</h3><span class="entry-meta">CS 594 &middot; UIC</span></div>
+<p><strong>The problem.</strong> Approximate nearest-neighbour indexes are usually compared on clean benchmark datasets. Real RAG pipelines are messier, and the failure modes don't show up in a recall-vs-latency chart.</p>
+<p><strong>What I built.</strong> Research work on BatANN indexing alongside an investigation into where RAG retrieval pipelines quietly go wrong &mdash; the pathology rather than the headline numbers.</p>
+<div class="tags"><span class="tag">ANN indexing</span><span class="tag">Embeddings</span><span class="tag">Retrieval evaluation</span></div>
+<p class="pending">Repository being prepared for release.</p>
+</div>
+
+<h2>Explainable Fraud, Waste &amp; Abuse Claim Audit</h2>
+<div class="entry">
+<div class="entry-top"><h3>Machine Learning in Production</h3><span class="entry-meta">CS 544 &middot; UIC</span></div>
+<p><strong>The problem.</strong> An insurance claim classifier that flags fraud but can't justify a flag is useless to the auditor who has to act on it.</p>
+<p><strong>What I built.</strong> A classifier on Databricks where explainability was the actual goal, not a post-hoc add-on. In-depth feature and label importance analysis to show which signals drove each prediction, plus data drift monitoring to catch when incoming claims stopped resembling the training distribution.</p>
+<p><strong>What I learned.</strong> In production ML, the model is the easy half. Knowing when it has quietly stopped being valid is the hard half.</p>
+<div class="tags"><span class="tag">Databricks</span><span class="tag">Python</span><span class="tag">Feature importance</span><span class="tag">Data drift</span></div>
+<div class="repos"><a href="https://github.com/javedmshah/fwa-ml-production">Repository &rarr;</a></div>
+</div>
+
+<h2>Edge AI on NVIDIA Jetson Thor</h2>
+<div class="entry">
+<div class="entry-top"><h3>Edge Computing</h3><span class="entry-meta">CS 494 &middot; UIC</span></div>
+<p><strong>What I built.</strong> An end-to-end Python pipeline running on a Jetson Thor device &mdash; ingestion, preprocessing, on-device inference, and result logging &mdash; containerized with Docker so it deploys reproducibly on edge hardware rather than only on the machine it was written on.</p>
+<p><strong>What I learned.</strong> At the edge, the constraint isn't model accuracy. It's memory, thermal headroom, and what happens when the network isn't there.</p>
+<div class="tags"><span class="tag">NVIDIA Jetson</span><span class="tag">Docker</span><span class="tag">Python</span><span class="tag">On-device inference</span></div>
+<div class="repos"><a href="https://github.com/C295-oss/CS-494-Seahawks-Website">Course repository &rarr;</a></div>
+</div>
+
+<h2>Melodi &mdash; Secure Web Application</h2>
+<div class="entry">
+<div class="entry-top"><h3>Secure Web Application Development</h3><span class="entry-meta">CS 484 &middot; UIC</span></div>
+<p><strong>What I built.</strong> A web application built with security as a first-class constraint &mdash; authentication, input handling, and the classes of vulnerability you only stop writing once you've been made to look for them.</p>
+<div class="tags"><span class="tag">Web security</span><span class="tag">Secure coding</span></div>
+<div class="repos"><a href="https://github.com/BonfantiRiccardo/cs484-melodi">Repository &rarr;</a></div>
+</div>
+
+<h2>BizWithUs &mdash; Qloo Agentic Hackathon</h2>
+<div class="entry">
+<div class="entry-top"><h3>Agentic B2B platform</h3><span class="entry-meta">October 2026</span></div>
+<p><strong>What we built.</strong> A platform that uses LLM APIs and Qloo's taste data to help small businesses &mdash; restaurants, bands, travel agencies &mdash; find and reach the customers most likely to care. Built with one teammate over the hackathon window.</p>
+<div class="tags"><span class="tag">LLM APIs</span><span class="tag">Agentic workflows</span><span class="tag">Qloo API</span></div>
+<div class="repos"><a href="https://github.com/Preet0504/BizWithUs">Repository &rarr;</a></div>
+</div>
+</div></main>
+<footer><div class="foot-inner">
+<span>&copy; 2026 Vipul Patil</span>
+<a href="#top">Back to top &uarr;</a>
+</div></footer>
+</body></html>
